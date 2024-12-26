@@ -155,7 +155,7 @@ export default function App() {
           <button
             key={semester}
             onClick={() => populateCoursesForSemester(semester)}
-            className="bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600 focus:ring-2 focus:ring-purple-500 focus:bg-purple-800 focus:outline-none"
+            className="bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600 focus:ring-2 focus:ring-purple-500 focus:bg-purple-700 focus:outline-none"
           >
             Semester {semester}
           </button>
