@@ -21,13 +21,88 @@ export default function App() {
     1: [
       { subject: "Math(DE & LA)", credits: 4 },
       { subject: "Physics", credits: 3 },
-      // Add more subjects here...
+      { subject: "Science Elective ", credits: 2 },
+      { subject: "Engineering Elective", credits: 2 },
+      { subject: "Science of Living Systems", credits: 2 },
+      { subject: "Environmental Science", credits: 2 },
+      { subject: "Physics Lab", credits: 1 },
+      { subject: "Programming Lab ", credits: 4 },
+      { subject: "Engineering Drawing & Graphics", credits: 1 },
     ],
     2: [
       { subject: "Chemistry", credits: 3 },
       { subject: "Math(T & NA)", credits: 4 },
-      // Add more subjects here...
+      { subject: "English", credits: 2 },
+      { subject: "Basic Electronics", credits: 2 },
+      { subject: "Basic Electrical Engineering ", credits: 2 },
+      { subject: "HASS Elective I", credits: 2 },
+      { subject: "Chemistry Lab", credits: 1 },
+      { subject: "Engineering Lab(BEE) ", credits: 1 },
+      { subject: "Workshop", credits: 1 },
+      { subject: "Sports & Yoga", credits: 1 },
+      { subject: "Communication Lab", credits: 1 },
     ],
+    3: [
+      { subject: "Scientific and Technical Writing", credits: 2 },
+      { subject: "Probability and Statistics", credits: 4 },
+      { subject: "Industry 4.0 Technologies", credits: 2 },
+      { subject: "Data Structures", credits: 4 },
+      { subject: "Digital Systems Design", credits: 3 },
+      { subject: "Automata Theory and Formal Languages", credits: 4 },
+      { subject: "Data Structures Lab", credits: 1 },
+      { subject: "Digital Systems Design Lab", credits: 1 },
+    ],
+    4: [
+      { subject: "HASS Elective II", credits: 2 },
+      { subject: "Discrete Mathematics", credits: 4 },
+      { subject: "Operating Systems", credits: 3 },
+      { subject: "Object Oriented Programming using Java", credits: 3 },
+      { subject: "Database Management Systems", credits: 3 },
+      { subject: "Computer Organization and Architecture", credits: 4 },
+      { subject: "Operating Systems Lab", credits: 1 },
+      { subject: "Object Oriented Programming using Java Lab", credits: 1 },
+      { subject: "Database Management Systems Lab", credits: 1 },
+      { subject: "Vocational Electives", credits: 1 },
+    ],
+    5: [
+      { subject: "Engineering Economics & Costing", credits: 3 },
+      { subject: "Design and Analysis of Algorithms", credits: 3 },
+      { subject: "Software Engineering", credits: 4 },
+      { subject: "Computer Networks", credits: 3 },
+      { subject: "Professional Elective-I", credits: 3 },
+      { subject: "Professional Elective-II", credits: 3 },
+      { subject: "Algorithms Laboratory", credits: 1 },
+      { subject: "Computer Networks Laboratory", credits: 1 },
+      { subject: "K-Explore Open Elective-I", credits: 1 },
+    ],
+    6: [
+      { subject: "HASS Elective-III", credits: 3 },
+      { subject: "Machine Learning", credits: 4 },
+      { subject: "Artificial Intelligence", credits: 3 },
+      { subject: "Professional Elective-III", credits: 3 },
+      { subject: "Open Elective-II/MI-1", credits: 3 },
+      { subject: "Universal Human Values", credits: 3 },
+      { subject: "Artificial Intelligence Laboratory", credits: 1 },
+      { subject: "Applications Development Laboratory", credits: 2 },
+      { subject: "Mini Project", credits: 2 },
+    ],
+    7: [
+      { subject: "Professional Elective-IV", credits: 3 },
+      { subject: "Engineering Professional Practice", credits: 2 },
+      { subject: "Open Elective-III/ (MI-II)", credits: 3 },
+      { subject: "Minor-III(Optional)", credits: 3 },
+      { subject: "Minor-IV(Optional)", credits: 3 },
+      { subject: "Project-I", credits: 5 },
+      { subject: "Internship", credits: 2 },
+      { subject: "MI-(Computing Laboratory)", credits: 2 },
+    ],
+    8: [
+      { subject: "Professional Elective-V", credits: 3 },
+      { subject: "Open Elective-IV/Minor-V (Optional)", credits: 3 },
+      { subject: "Minor-VI", credits: 3 },
+      { subject: "Project-II", credits: 9 },
+    ],
+
   };
 
   const gradePointsMap = {
@@ -79,12 +154,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
+      
       <h1 className="text-2xl font-bold text-gray-800 mb-6">
         SGPA Calculator
       </h1>
-
+      <div className="mb-4 flex space-x-6">
       <div className="mb-4">
-        <label className="block mb-2 font-medium">Branch</label>
+        <label className="block mb-2 font-medium flex justify-center">Branch</label>
         <select
           value={branch}
           onChange={(e) => setBranch(e.target.value)}
@@ -96,7 +172,7 @@ export default function App() {
       </div>
 
       <div className="mb-4">
-        <label className="block mb-2 font-medium">Year</label>
+        <label className="block mb-2 font-medium flex justify-center">Year</label>
         <select
           value={year}
           onChange={(e) => {
@@ -116,7 +192,7 @@ export default function App() {
 
       {year && (
         <div className="mb-4">
-          <label className="block mb-2 font-medium">Semester</label>
+          <label className="block mb-2 font-medium flex justify-center">Semester</label>
           <select
             value={semester}
             onChange={(e) => setSemester(e.target.value)}
@@ -128,15 +204,18 @@ export default function App() {
           </select>
         </div>
       )}
+      </div>
 
+
+      
       <button
         onClick={populateCourses}
-        className="bg-purple-500 text-white px-4 py-2 rounded mb-6"
+        className="bg-purple-500 text-white px-4 py-2 rounded mb-6 hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 "
       >
         Load Courses
       </button>
-
-      <div className="w-full max-w-lg bg-white shadow-md rounded p-6">
+     
+      <div className="w-xl bg-white shadow-md rounded-lg p-6 hover:shadow-2xl space-between">
         {courses.map((course, index) => (
           <div key={index} className="mb-4">
             <div className="flex space-x-4">
@@ -174,7 +253,7 @@ export default function App() {
               </select>
               <button
                 onClick={() => deleteSubject(index)}
-                className="bg-red-500 text-white px-2 rounded"
+                className="bg-red-500 text-white px-2 rounded hover:bg-red-600 "
               >
                 Delete
               </button>
@@ -185,7 +264,7 @@ export default function App() {
         {branch === "Other" && (
           <button
             onClick={addSubject}
-            className="bg-green-500 text-white px-4 py-2 rounded mb-4"
+            className="bg-green-500 text-white px-4 py-2 rounded mb-4 mr-2"
           >
             Add Subject
           </button>
@@ -193,7 +272,7 @@ export default function App() {
 
         <button
           onClick={calculateSGPA}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="bg-blue-500 text-white px-5 py-2 rounded ml-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 "
         >
           Calculate SGPA
         </button>
