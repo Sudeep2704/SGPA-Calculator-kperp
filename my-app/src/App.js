@@ -154,67 +154,67 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
-      
+
       <h1 className="text-2xl font-bold text-gray-800 mb-6">
         SGPA Calculator
       </h1>
       <div className="mb-4 flex space-x-6">
-      <div className="mb-4">
-        <label className="block mb-2 font-medium flex justify-center">Branch</label>
-        <select
-          value={branch}
-          onChange={(e) => setBranch(e.target.value)}
-          className="border border-gray-300 rounded px-3 py-2"
-        >
-          <option value="CSE">CSE</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-
-      <div className="mb-4">
-        <label className="block mb-2 font-medium flex justify-center">Year</label>
-        <select
-          value={year}
-          onChange={(e) => {
-            setYear(e.target.value);
-            setSemester(null);
-          }}
-          className="border border-gray-300 rounded px-3 py-2"
-        >
-          <option value="">Select Year</option>
-          {[1, 2, 3, 4].map((y) => (
-            <option key={y} value={y}>
-              Year {y}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {year && (
         <div className="mb-4">
-          <label className="block mb-2 font-medium flex justify-center">Semester</label>
+          <label className="block mb-2 font-medium flex justify-center">Branch</label>
           <select
-            value={semester}
-            onChange={(e) => setSemester(e.target.value)}
+            value={branch}
+            onChange={(e) => setBranch(e.target.value)}
             className="border border-gray-300 rounded px-3 py-2"
           >
-            <option value="">Select Semester</option>
-            <option value={2 * year - 1}>Sem {2 * year - 1}</option>
-            <option value={2 * year}>Sem {2 * year}</option>
+            <option value="CSE">CSE</option>
+            <option value="Other">Other</option>
           </select>
         </div>
-      )}
+
+        <div className="mb-4">
+          <label className="block mb-2 font-medium flex justify-center">Year</label>
+          <select
+            value={year}
+            onChange={(e) => {
+              setYear(e.target.value);
+              setSemester(null);
+            }}
+            className="border border-gray-300 rounded px-3 py-2"
+          >
+            <option value="">Select Year</option>
+            {[1, 2, 3, 4].map((y) => (
+              <option key={y} value={y}>
+                Year {y}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {year && (
+          <div className="mb-4">
+            <label className="block mb-2 font-medium flex justify-center">Semester</label>
+            <select
+              value={semester}
+              onChange={(e) => setSemester(e.target.value)}
+              className="border border-gray-300 rounded px-3 py-2"
+            >
+              <option value="">Select Semester</option>
+              <option value={2 * year - 1}>Sem {2 * year - 1}</option>
+              <option value={2 * year}>Sem {2 * year}</option>
+            </select>
+          </div>
+        )}
       </div>
 
 
-      
+
       <button
         onClick={populateCourses}
         className="bg-purple-500 text-white px-4 py-2 rounded mb-6 hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 "
       >
         Load Courses
       </button>
-     
+
       <div className="w-xl bg-white shadow-md rounded-lg p-6 hover:shadow-2xl space-between">
         {courses.map((course, index) => (
           <div key={index} className="mb-4">
@@ -262,6 +262,14 @@ export default function App() {
         ))}
 
         {branch === "Other" && (
+          <button
+            onClick={addSubject}
+            className="bg-green-500 text-white px-4 py-2 rounded mb-4 mr-2"
+          >
+            Add Subject
+          </button>
+        )}
+        {branch === "CSE" && (
           <button
             onClick={addSubject}
             className="bg-green-500 text-white px-4 py-2 rounded mb-4 mr-2"
