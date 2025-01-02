@@ -109,12 +109,12 @@ export default function App() {
 
     const gradePointsMap = {
         "90 - 100": 10,
-        "80 - 89": 8,
-        "70 - 79": 7,
-        "60 - 69": 6,
-        "50 - 59": 5,
-        "40 - 49": 4,
-        "Below 40": 0,
+        "80 - 89": 9,
+        "70 - 79": 8,
+        "60 - 69": 7,
+        "50 - 59": 6,
+        "40 - 49": 5,
+        "Below 40": 4,
     };
 
     const populateCourses = () => {
