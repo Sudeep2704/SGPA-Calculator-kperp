@@ -1,3 +1,63 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.Sgpa {
+
+display: flex;
+flex-direction: column;
+}
+
+.Sgpa h3 {
+
+text-align: center;
+
+}
+
+.Motivation p {
+
+text-align: center;
+
+}
+
+.delete {
+height: 30px;
+width: 30px;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.add-btn {
+
+display: flex;
+justify-content: center;
+
+
+}
+
+.add-btn button {
+
+height: 40px;
+width: 150px;
+
+}
+
+.glow-effect {
+    position: relative;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.glow-effect:hover {
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 
+                0 0 20px rgba(255, 0, 0, 0.6), 
+                0 0 30px rgba(255, 0, 0, 0.4);
+}
+
+.glow-effect:focus {
+    box-shadow: 0 0 10px rgba(255, 0, 0, 1), 
+                0 0 20px rgba(255, 0, 0, 0.9), 
+                0 0 30px rgba(255, 0, 0, 0.7);
+}
+
