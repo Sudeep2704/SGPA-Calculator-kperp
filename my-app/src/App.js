@@ -12,7 +12,7 @@ import React, {useState} from "react";
       import emoji from "emoji-dictionary";
 
       export default function App() {
-  const [branch, setBranch] = useState("CSE");
+      const [branch, setBranch] = useState("CSE");
       const [year, setYear] = useState(null);
       const [semester, setSemester] = useState(null);
       const [courses, setCourses] = useState([]);
