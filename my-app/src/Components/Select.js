@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Trash from "../Components/Trash.svg"
+import Swal from 'sweetalert2'
 
 export default function App() {
     const [branch, setBranch] = useState("CSE");
@@ -183,7 +184,12 @@ export default function App() {
 
     const calculateSGPA = () => {
         if (courses.length === 0) {
-            alert("Please add at least one subject to calculate SGPA!");
+            Swal.fire({
+                title: 'Oops!',
+                text: 'Please add at least one subject to calculate SGPA!',
+                icon: 'warning',
+                confirmButtonText: 'Ok'
+              })
             return;
         }
     
@@ -193,7 +199,11 @@ export default function App() {
         // Check if all marks are filled
         for (const course of courses) {
             if (!course.marks) {
-                alert("Add Marks!!");
+                Swal.fire({
+                    title: 'Add Marks',
+                    icon: 'question',
+                    confirmButtonText: 'Ok'
+                  })
                 return;
             }
     
