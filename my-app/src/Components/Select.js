@@ -7,8 +7,8 @@ export default function App() {
     const [semester, setSemester] = useState(null);
     const [courses, setCourses] = useState([]);
     const [sgpa, setSGPA] = useState(null);
-    const [isCoursesLoaded, setIsCoursesLoaded] = useState(false); 
-    const [isLoading, setIsLoading] = useState(false); 
+    const [isCoursesLoaded, setIsCoursesLoaded] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [year, setYear] = useState(null);
 
     const marksOptions = [
@@ -189,13 +189,13 @@ export default function App() {
                 text: 'Please add at least one subject to calculate SGPA!',
                 icon: 'warning',
                 confirmButtonText: 'Ok'
-              })
+            })
             return;
         }
-    
+
         let totalPoints = 0;
         let totalCredits = 0;
-    
+
         // Check if all marks are filled
         for (const course of courses) {
             if (!course.marks) {
@@ -203,15 +203,15 @@ export default function App() {
                     title: 'Add Marks',
                     icon: 'question',
                     confirmButtonText: 'Ok'
-                  })
+                })
                 return;
             }
-    
+
             const gradePoint = gradePointsMap[course.marks] || 0;
             totalPoints += gradePoint * course.credits;
             totalCredits += course.credits;
         }
-    
+
         const sgpa = totalCredits > 0 ? totalPoints / totalCredits : 0;
         setSGPA(sgpa.toFixed(2));
     };
@@ -235,43 +235,43 @@ export default function App() {
 
 
                 <div className="mb-4">
-          <label className="block mb-2 font-medium flex justify-center">Year</label>
-          <select
-            value={year}
-            onChange={(e) => {
-              setYear(e.target.value);
-              setSemester(null);
-            }}
-            className="border border-gray-300 rounded px-3 py-2"
-          >
-            <option value="">Select Year</option>
-            {[1, 2, 3, 4].map((y) => (
-              <option key={y} value={y}>
-                Year {y}
-              </option>
-            ))}
-          </select>
-        </div>
+                    <label className="block mb-2 font-medium flex justify-center">Year</label>
+                    <select
+                        value={year}
+                        onChange={(e) => {
+                            setYear(e.target.value);
+                            setSemester(null);
+                        }}
+                        className="border border-gray-300 rounded px-3 py-2"
+                    >
+                        <option value="">Select Year</option>
+                        {[1, 2, 3, 4].map((y) => (
+                            <option key={y} value={y}>
+                                Year {y}
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
 
-        <div className="mb-4">
-    <label className="block mb-2 font-medium flex justify-center">Semester</label>
-    <select
-        value={semester}
-        onChange={(e) => setSemester(parseInt(e.target.value))}
-        className="border border-gray-300 rounded px-3 py-2"
-        disabled={!year} // Disable the dropdown if no year is selected
-    >
-        <option value="">Select Semester</option>
-        {year &&
-            Array.from({ length: 2 }, (_, i) => (year - 1) * 2 + i + 1).map((sem) => (
-                <option key={sem} value={sem}>
-                    Semester {sem}
-                </option>
-            ))}
-    </select>
-</div>
-</div>
+                <div className="mb-4">
+                    <label className="block mb-2 font-medium flex justify-center">Semester</label>
+                    <select
+                        value={semester}
+                        onChange={(e) => setSemester(parseInt(e.target.value))}
+                        className="border border-gray-300 rounded px-3 py-2"
+                        disabled={!year} // Disable the dropdown if no year is selected
+                    >
+                        <option value="">Select Semester</option>
+                        {year &&
+                            Array.from({ length: 2 }, (_, i) => (year - 1) * 2 + i + 1).map((sem) => (
+                                <option key={sem} value={sem}>
+                                    Semester {sem}
+                                </option>
+                            ))}
+                    </select>
+                </div>
+            </div>
 
             <button
                 onClick={populateCourses}
@@ -293,21 +293,21 @@ export default function App() {
                                 placeholder="Subject"
                                 className="border border-gray-300 rounded px-3 py-2 flex-1"
                             />
-                            
-    <select
-        value={course.credits}
-        onChange={(e) =>
-            handleInputChange(index, "credits", parseFloat(e.target.value))
-        }
-        className="border border-gray-300 rounded px-3 py-2 w-24"
-    >
-        <option value="">Select Credits</option>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((credit) => (
-            <option key={credit} value={credit}>
-                {credit}
-            </option>
-        ))}
-    </select>
+
+                            <select
+                                value={course.credits}
+                                onChange={(e) =>
+                                    handleInputChange(index, "credits", parseFloat(e.target.value))
+                                }
+                                className="border border-gray-300 rounded px-3 py-2 w-24"
+                            >
+                                <option value="">Select Credits</option>
+                                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((credit) => (
+                                    <option key={credit} value={credit}>
+                                        {credit}
+                                    </option>
+                                ))}
+                            </select>
                             <select
                                 value={course.marks}
                                 onChange={(e) =>
@@ -323,11 +323,11 @@ export default function App() {
                                 ))}
                             </select>
                             <button
-    onClick={() => deleteSubject(index)}
-    className="delete bg-red-500 hover:bg-red-600 px-2 py-2 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 glow-effect"
->
-    <img src={Trash} alt="Delete" />
-</button>
+                                onClick={() => deleteSubject(index)}
+                                className="delete bg-red-500 hover:bg-red-600 px-2 py-2 mt-1 rounded focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 glow-effect"
+                            >
+                                <img src={Trash} alt="Delete" />
+                            </button>
                         </div>
                     </div>
                 ))}
