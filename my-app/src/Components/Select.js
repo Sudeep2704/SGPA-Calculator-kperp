@@ -118,12 +118,18 @@ export default function App() {
     };
 
     const populateCourses = () => {
-        if (branch === "CSE" && semester) {
+        if (branch === "Other") {
+            // Display a single blank row for adding custom courses
+            setCourses([{ subject: "", credits: 0, marks: "" }]);
+            setIsCoursesLoaded(true); // Mark courses as loaded
+        } else if (branch === "CSE" && semester) {
+            // Load predefined courses for CSE
             setCourses(semesterWiseCredits[semester] || []);
-            setIsCoursesLoaded(true); // Set courses as loaded
+            setIsCoursesLoaded(true); // Mark courses as loaded
         } else {
+            // Reset courses if branch or semester is invalid
             setCourses([]);
-            setIsCoursesLoaded(false); // Reset if no semester is selected
+            setIsCoursesLoaded(false);
         }
     };
 
@@ -176,21 +182,26 @@ export default function App() {
     };
 
     const calculateSGPA = () => {
+        if (courses.length === 0) {
+            alert("Please add at least one subject to calculate SGPA!");
+            return;
+        }
+    
         let totalPoints = 0;
         let totalCredits = 0;
-
+    
         // Check if all marks are filled
         for (const course of courses) {
             if (!course.marks) {
                 alert("Add Marks!!");
                 return;
             }
-
+    
             const gradePoint = gradePointsMap[course.marks] || 0;
             totalPoints += gradePoint * course.credits;
             totalCredits += course.credits;
         }
-
+    
         const sgpa = totalCredits > 0 ? totalPoints / totalCredits : 0;
         setSGPA(sgpa.toFixed(2));
     };
